@@ -1,11 +1,11 @@
 # Reproducible Research: Peer Assessment 1
-This document is part of the Reproducible reserach course. It aims to 
+This document is part of the Reproducible research course. It aims to 
 showcase the use of R Markdown to create literate Statistical Programming.
 The data used is activity data and is downloaded from https://github.com/rdpeng/RepData_PeerAssessment1
 
 
 ## Loading and preprocessing the data
-First Load to data into a variable and run summary to get an understanding 
+* First Load to data into a variable and run summary to get an understanding 
 of the data
 
 ```r
@@ -25,12 +25,12 @@ summary(activity_data)
 ```
 
 ## What is mean total number of steps taken per day?
-*Roll up the data and ignore the NA cases
+* Roll up the data and ignore the NA cases
 
 ```r
 roll_up_data_date<-aggregate(steps~date,data=activity_data,sum,na.rm=TRUE)
 ```
-*Create a Histogram and then calculate the mean and median
+* Create a Histogram and then calculate the mean and median
 
 ```r
 hist(roll_up_data_date$steps,main="Histogram of Daily Activity")
@@ -52,7 +52,7 @@ daily_med<-median(roll_up_data_date$steps)
     10765 steps.
     
 ## What is the average daily activity pattern?
-*Create aggregates at the 5 minute intervals and plot the activity in those 
+* Create aggregates at the 5 minute intervals and plot the activity in those 
 5 minute intervals
 
 
@@ -71,18 +71,18 @@ five_minute_int <- roll_up_data_int[which.max(roll_up_data_int$steps),]$interval
 The five minute interval with maximum activity is 835
 
 ## Imputing missing values
-*Calculate and report the total number of missing values in the data
+* Calculate and report the total number of missing values in the data
 
 ```r
 miss_cases<-sum(is.na(activity_data$steps))
 ```
 The total number of missing cases in the raw data are `r miss_cases'
-*Create a dataset with missing values filled in. Firstly, I have created a dataset which has the median values of the 5 minute intervals which we will useto impute data later
+* Create a dataset with missing values filled in. Firstly, I have created a dataset which has the median values of the 5 minute intervals which we will useto impute data later
 
 ```r
 roll_up_data_int1<-aggregate(steps~interval,data=activity_data,median,na.rm=TRUE)
 ```
-*Now create a copy of the original raw data and iterate through it and repalce the NA values with the median
+* Now create a copy of the original raw data and iterate through it and repalce the NA values with the median
 
 ```r
 imputed_act_data<-activity_data
@@ -93,12 +93,12 @@ for(i in 1:nrow(imputed_act_data)){
 }
 ```
 
-*Roll up the the new data
+* Roll up the the new data
 
 ```r
 roll_up_data_date1<-aggregate(steps~date,data=imputed_act_data,sum,na.rm=TRUE)
 ```
-*Create a Histogram of the new Data
+* Create a Histogram of the new Data
 
 ```r
 hist(roll_up_data_date1$steps,main="Histogram of Daily Activity of Imputed Data")
