@@ -1,8 +1,8 @@
 ---
 title: "Reproducible Research: Peer Assessment 1"
 output: 
-  html_document:
-    keep_md: true
+html_document:
+keep_md: true
 ---
 This document is part of the Reproducible research course. It aims to 
 showcase the use of R Markdown to create literate Statistical Programming.
@@ -35,10 +35,10 @@ daily_mean<-mean(roll_up_data_date$steps)
 daily_med<-median(roll_up_data_date$steps)
 ```
 * The **mean** total number of steps taken per day is 
-    `r daily_mean` steps.
+`r daily_mean` steps.
 * The **median** total number of steps taken per day is 
-    `r daily_med` steps.
-    
+`r daily_med` steps.
+
 ## What is the average daily activity pattern?
 * Create aggregates at the 5 minute intervals and plot the activity in those 
 5 minute intervals
@@ -61,7 +61,7 @@ The five minute interval with maximum activity is `r five_minute_int`
 miss_cases<-sum(is.na(activity_data$steps))
 
 ```
-The total number of missing cases in the raw data are `r miss_cases'
+The total number of missing cases in the raw data are `r miss_cases`
 * Create a dataset with missing values filled in. Firstly, I have created a dataset which has the median values of the 5 minute intervals which we will useto impute data later
 ```{r echo=TRUE}
 roll_up_data_int1<-aggregate(steps~interval,data=activity_data,median,na.rm=TRUE)
@@ -70,9 +70,9 @@ roll_up_data_int1<-aggregate(steps~interval,data=activity_data,median,na.rm=TRUE
 ```{r echo=TRUE}
 imputed_act_data<-activity_data
 for(i in 1:nrow(imputed_act_data)){
-  if(is.na(imputed_act_data[i,]$steps)){
-    imputed_act_data[i,]$steps <- roll_up_data_int1[roll_up_data_int1$interval==imputed_act_data[i,]$interval,]$steps
-  }
+        if(is.na(imputed_act_data[i,]$steps)){
+                imputed_act_data[i,]$steps <- roll_up_data_int1[roll_up_data_int1$interval==imputed_act_data[i,]$interval,]$steps
+        }
 }
 
 ```
@@ -94,10 +94,10 @@ daily_mean1<-mean(roll_up_data_date1$steps)
 daily_med1<-median(roll_up_data_date1$steps)
 ```
 * The **mean** total number of steps taken per day is 
-    `r daily_mean1` steps.
+`r daily_mean1` steps.
 * The **median** total number of steps taken per day is 
-    `r daily_med1` steps.
-    
+`r daily_med1` steps.
+
 ## Are there differences in activity patterns between weekdays and weekends?
 
 * Create a variable called ind_weekday which would be a factor with values weekday and weekend

@@ -76,7 +76,7 @@ The five minute interval with maximum activity is 835
 ```r
 miss_cases<-sum(is.na(activity_data$steps))
 ```
-The total number of missing cases in the raw data are `r miss_cases'
+The total number of missing cases in the raw data are 2304
 * Create a dataset with missing values filled in. Firstly, I have created a dataset which has the median values of the 5 minute intervals which we will useto impute data later
 
 ```r
